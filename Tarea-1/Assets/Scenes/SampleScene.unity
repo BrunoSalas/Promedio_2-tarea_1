@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -257,6 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803b9ce76b7068747af805eeb127cbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 3
+  life: 40
   maxDistance: 5
   moveSpeed: 20
   randomPoint: {x: 0, y: 0}
@@ -666,7 +668,8 @@ Transform:
   m_LocalPosition: {x: 4.75556, y: 1, z: 12.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2011822644}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -682,8 +685,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9526cb8bd891842b4c3883aa7d015f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 4
   player: {fileID: 1706140598}
+  life: 20
   safeDistance: 5
+  bullet: {fileID: 7933369515136829665, guid: bf40d2ee2556335479d9913966838410, type: 3}
+  pointShoot: {fileID: 2011822644}
+  timertoShoot: 1
 --- !u!195 &1490042944
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -770,7 +778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec44af0bdf2ee104389d9933d6a28ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
+  life: 50
+  damage: 0
   bullet: {fileID: 7933369515136829665, guid: 5d2bd2b59f4562b43a0fafb6f0bb6e19, type: 3}
   pointShoot: {fileID: 1415572996}
   timertoShoot: 2
@@ -1036,8 +1045,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57733d3d4718e94eac1bbd00ee35cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
   player: {fileID: 1706140598}
+  life: 30
   bullet: {fileID: 7933369515136829665, guid: 573728fd798526046968622ff6320ba7, type: 3}
   pointShoot: {fileID: 1684804820}
   timertoShoot: 1
-  separationDistance: 0.8
+  separationDistance: 1.33
+--- !u!1 &2011822643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011822644}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2011822644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011822643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.95}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1490042942}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
