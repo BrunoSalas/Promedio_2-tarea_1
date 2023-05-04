@@ -8,6 +8,7 @@ public class Enemy1 : Enemy
     public float maxDistance = 5f;
     public float moveSpeed = 20f;
     NavMeshAgent agent;
+    public Vector2 randomPoint;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class Enemy1 : Enemy
     {
         if (!agent.hasPath || agent.remainingDistance < 0.5f)
         {
-            Vector2 randomPoint = Random.insideUnitCircle.normalized * maxDistance;
+            randomPoint = Random.insideUnitCircle.normalized * maxDistance;
             Vector3 targetPosition = new Vector3(randomPoint.x + transform.position.x, transform.position.y, transform.position.z);
 
             NavMeshHit hit;
