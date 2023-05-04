@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy1 : Enemy,IShoot
+public class Enemy1 : Enemy,IShoot,Damage
 {
-
+    public int life;
     public float maxDistance = 5f;
     public float moveSpeed = 20f;
     NavMeshAgent agent;
@@ -29,6 +29,10 @@ public class Enemy1 : Enemy,IShoot
         {
             timer = 0;
             Shoot();
+        }
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
         
@@ -54,5 +58,9 @@ public class Enemy1 : Enemy,IShoot
     public void Shoot()
     {
         Instantiate(bullet, pointShoot.position, pointShoot.rotation);
+    }
+    public int GetDamage(int damage)
+    {
+        return life - damage;
     }
 }

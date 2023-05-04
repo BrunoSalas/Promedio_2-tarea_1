@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemy2 : Enemy,IShoot
 {
     public GameObject player;
+    public int life;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform pointShoot;
     [SerializeField] private float timertoShoot;
@@ -27,6 +28,10 @@ public class Enemy2 : Enemy,IShoot
             Shoot();
         }
         Move();
+        if(life <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public override void Move()
@@ -38,5 +43,12 @@ public class Enemy2 : Enemy,IShoot
     public void Shoot()
     {
         Instantiate(bullet, pointShoot.position, Quaternion.identity);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Damage>() != null)
+        {
+            life -= collision.gameObject.GetComponent<Damage>().GetDamage();
+        }
     }
 }

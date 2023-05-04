@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IShoot
+public class Player : MonoBehaviour, IShoot,Damage
 {
     [SerializeField] private int life;
     private Rigidbody rb;
+    public int damage;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform pointShoot;
     [SerializeField] private float timertoShoot;
@@ -26,6 +27,10 @@ public class Player : MonoBehaviour, IShoot
             timer = 0;
             Shoot();
         }
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     void FixedUpdate () 
     {
@@ -38,10 +43,21 @@ public class Player : MonoBehaviour, IShoot
         rb.AddForce(movement);
 
     }
-
     public void Shoot()
     {
         Instantiate(bullet, pointShoot.position, Quaternion.identity);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Damage>() != null)
+        {
+           life -= collision.gameObject.GetComponent<Damage>().GetDamage();
+        }
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
     /*private void OnCollisionEnter( collision collesion)
 {
