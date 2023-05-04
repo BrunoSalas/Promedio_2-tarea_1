@@ -7,6 +7,6 @@ public class BulletPlayer : Bullet
 
     protected override void Update()
     {
-        rb.velocity = Vector3.forward * speed;
+        rb.velocity = transform.forward * speed;
     }
 }
