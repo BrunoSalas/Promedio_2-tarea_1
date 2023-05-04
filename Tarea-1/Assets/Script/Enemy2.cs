@@ -36,8 +36,11 @@ public class Enemy2 : Enemy,IShoot
 
     public override void Move()
     {
-        Vector3 targetPosition = player.transform.position - transform.forward * separationDistance;
-        agent.SetDestination(targetPosition);
+        if (player != null)
+        {
+            Vector3 targetPosition = player.transform.position - transform.forward * separationDistance;
+            agent.SetDestination(targetPosition);
+        }
     }
 
     public void Shoot()
